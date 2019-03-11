@@ -56,7 +56,7 @@ function getPlayers() {
   var players = [];
   var newPlayer;
 
-  while (players.length < 10000) {
+  while (players.length < 1000) {
 
     newPlayer = getPlayer();
 
@@ -69,21 +69,15 @@ function getPlayers() {
   return players;
 }
 
-function clearInput() {
-  $("#usr-input").val("");
-
-  $("span.content").text("");
-}
-
-function addPlayersToDatalist(players) {
+function addPlayersToList(players) {
 
   for (var i = 0; i < players.length; i++) {
 
-    var opt = document.createElement("option");
+    var li = document.createElement("li");
 
-    opt.value = players[i].id;
+    li.innerHTML = players[i].id;
 
-    $("#players").append(opt);
+    $("#players").append(li);
   }
 }
 
@@ -98,14 +92,11 @@ function getPlayerById(selectedPlayerId, players) {
   }
 }
 
-function updateData(players) {
+function updateData(players, selID) {
 
-  var me = $("input");
-  var selectedPlayerId = me.val();
+  var player = getPlayerById(selID, players);
 
-  var player = getPlayerById(selectedPlayerId, players);
-
-  $("#id > span.content").text(player.id);
+  $("#id.content").text(player.id);
   $("#points > span.content").text(player.points);
   $("#bounce > span.content").text(player.bounce);
   $("#mistake > span.content").text(player.mistake);
@@ -117,14 +108,14 @@ function init () {
 
   var players = getPlayers();
 
-  addPlayersToDatalist(players);
+  addPlayersToList(players);
 
-  $("input").on("change", function() {
-    updateData(players)
+  $("#players > li").on("click", function() {
+    var me = $(this);
+    var selID = me.text();
+
+    updateData(players, selID)
   });
-
-  var clearBtn = $("#clear-btn");
-  clearBtn.click(clearInput);
 }
 
 $(init);
