@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.margin-horiz-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  background: #dedede;
+}
+.input-container {
+  padding: 100px 0;
+}
+.input-container > * {
+  margin: 0 .5rem;
+}
+.player-wrapper {
+  padding-top: 30px;
+}
